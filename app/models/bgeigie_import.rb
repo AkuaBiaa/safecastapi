@@ -23,6 +23,8 @@ class BgeigieImport < MeasurementImport # rubocop:disable Metrics/ClassLength
   end
   scope :unapproved, -> { where(approved: false).where(rejected: false) }
 
+  scope :pending, -> { processed.unapproved }
+
   store :status_details, accessors: [
     :process_file,
     :import_bgeigie_logs,
