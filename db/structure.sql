@@ -828,6 +828,20 @@ CREATE UNIQUE INDEX index_admins_on_reset_password_token ON admins USING btree (
 
 
 --
+-- Name: index_bgeigie_logs_on_bgeigie_import_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bgeigie_logs_on_bgeigie_import_id ON bgeigie_logs USING btree (bgeigie_import_id);
+
+
+--
+-- Name: index_bgeigie_logs_on_device_serial_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bgeigie_logs_on_device_serial_id ON bgeigie_logs USING btree (device_serial_id);
+
+
+--
 -- Name: index_bgeigie_logs_on_md5sum; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -891,6 +905,13 @@ CREATE INDEX index_measurements_on_captured_at ON measurements USING btree (capt
 
 
 --
+-- Name: index_measurements_on_captured_at_and_unit_and_device_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_measurements_on_captured_at_and_unit_and_device_id ON measurements USING btree (captured_at, unit, device_id) WHERE (device_id IS NOT NULL);
+
+
+--
 -- Name: index_measurements_on_device_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -944,6 +965,13 @@ CREATE INDEX index_measurements_on_user_id ON measurements USING btree (user_id)
 --
 
 CREATE INDEX index_measurements_on_user_id_and_captured_at ON measurements USING btree (user_id, captured_at);
+
+
+--
+-- Name: index_measurements_on_value_and_device_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_measurements_on_value_and_device_id ON measurements USING btree (value, device_id) WHERE (device_id IS NOT NULL);
 
 
 --
